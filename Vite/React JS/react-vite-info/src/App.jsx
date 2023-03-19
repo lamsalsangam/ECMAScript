@@ -7,7 +7,7 @@
 // import File7 from "./tutorial/02-useEffect/02-basic";
 // import File8 from "./tutorial/02-useEffect/03-multiple-effects";
 // import File9 from "./tutorial/02-useEffect/04-fetch-data";
-import File10 from "./tutorial/02-useEffect/05-cleanup-function";
+// import File10 from "./tutorial/02-useEffect/05-cleanup-function";
 // import File11 from "./tutorial/03-conditional-rendering/01-multiple-returns-basics";
 // import File12 from "./tutorial/03-conditional-rendering/02-multiple-returns-fetch-data";
 // import File13 from "./tutorial/03-conditional-rendering/03-hooks-rule";
@@ -15,6 +15,11 @@ import File10 from "./tutorial/02-useEffect/05-cleanup-function";
 // import File15 from "./tutorial/03-conditional-rendering/05-short-circuit-examples";
 // import File16 from "./tutorial/03-conditional-rendering/06-toggle-challenge";
 // import File17 from "./tutorial/03-conditional-rendering/07-user-challenge";
+// import { Navbar as File18 } from "./tutorial/04-project-structures/Navbar/index";
+// import { Home as File19 } from "./tutorial/04-project-structures/Pages";
+// import { About as File20 } from "./tutorial/04-project-structures/Pages";
+// import File21 from "./tutorial/04-project-structures/Example";
+import File22 from "./tutorial/05-leverage-javascript/List";
 
 const LineBreak = () => {
   return (
@@ -44,13 +49,13 @@ function App() {
         <File5 />
         <LineBreak />
       </> */}
-      <>
-        {/* <File6 />
+      {/* <>
+        <File6 />
         <File7 />
         <File8/>
-        <File9 /> */}
+        <File9 />
         <File10 />
-      </>
+      </> */}
       {/* <>
         <File11 />
         <File12 />
@@ -60,6 +65,15 @@ function App() {
         <File16 />
         <File17 />
       </> */}
+      {/* <>
+        <File18 />
+        <File19 />
+        <File20 />
+        <File21 />
+      </> */}
+      <>
+        <File22 />
+      </>
     </div>
   );
 }
