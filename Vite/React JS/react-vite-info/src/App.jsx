@@ -19,7 +19,18 @@
 // import { Home as File19 } from "./tutorial/04-project-structures/Pages";
 // import { About as File20 } from "./tutorial/04-project-structures/Pages";
 // import File21 from "./tutorial/04-project-structures/Example";
-import File22 from "./tutorial/05-leverage-javascript/List";
+// import File22 from "./tutorial/05-leverage-javascript/List";
+// import File23 from "./tutorial/06-forms/01-controlled-inputs";
+// import File24 from "./tutorial/06-forms/02-user-challenge";
+// import File25 from "./tutorial/06-forms/03-multiple-inputs";
+// import File26 from "./tutorial/06-forms/04-other-inputs";
+// import File27 from "./tutorial/06-forms/05-form-data";
+// import File28 from "./tutorial/07-useRef/01-useRef-basics";
+// import File29 from "./tutorial/08-custom-hooks/01-toggle";
+// import File30 from "./tutorial/08-custom-hooks/02-fetch-data";
+// import File31 from "./tutorial/09-context-api/prop-drilling/Navbar";
+// import File32 from "./tutorial/09-context-api/context/Navbar";
+import File33 from "./tutorial/10-useReducer/01-useReducer";
 
 const LineBreak = () => {
   return (
@@ -71,8 +82,25 @@ function App() {
         <File20 />
         <File21 />
       </> */}
-      <>
+      {/* <>
         <File22 />
+      </> */}
+      {/* <>
+        <File23 />
+        <File24 />
+        <File25 />
+        <File26 />
+        <File27 />
+        <File28 />
+        <File29 />
+        <File30 />
+      </> */}
+      {/* <>
+        <File31 />
+        <File32 />
+      </> */}
+      <>
+        <File33 />
       </>
     </div>
   );
