@@ -30,7 +30,11 @@
 // import File30 from "./tutorial/08-custom-hooks/02-fetch-data";
 // import File31 from "./tutorial/09-context-api/prop-drilling/Navbar";
 // import File32 from "./tutorial/09-context-api/context/Navbar";
-import File33 from "./tutorial/10-useReducer/01-useReducer";
+// import File33 from "./tutorial/10-useReducer/01-useReducer";
+// import File34 from "./tutorial/11-performance/01-lower-state/index";
+// import File35 from "./tutorial/11-performance/02-lower-state-challenge/index";
+// import File36 from "./tutorial/11-performance/03-hooks/index";
+// import File37 from "./tutorial/11-performance/04-react-18/index";
 
 const LineBreak = () => {
   return (
@@ -99,9 +103,15 @@ function App() {
         <File31 />
         <File32 />
       </> */}
-      <>
+      {/* <>
         <File33 />
-      </>
+      </> */}
+      {/* <>
+        <File34 />
+        <File35 />
+        <File36 />
+        <File37 />
+      </> */}
     </div>
   );
 }
