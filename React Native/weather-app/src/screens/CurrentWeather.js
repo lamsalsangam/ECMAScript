@@ -1,31 +1,57 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import RowText from '../components/RowText'
+import { weatherType } from '../utilities/weatherType'
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherData }) => {
+  const {
+    main: { temp, feels_like, temp_max, temp_min },
+    weather
+  } = weatherData
+  const weatherCondition = weather[0].main
+
+  const {
+    wrapper,
+    container,
+    temperature,
+    feels,
+    hiLowWrapper,
+    hiLow,
+    bodyWrapper,
+    description,
+    message
+  } = styles
+
   return (
-    // SafeAreaView will render the Component just below the status bar of the device
-    <SafeAreaView style={styles.wrapper}>
-      {/* <View style={{ backgroundColor: 'gray' }}> */}
-      <View style={styles.container}>
-        <Feather name="sun" size={100} color={'#002B5B'} />
-        <Text style={styles.temp}>6</Text>
-        <Text style={styles.feels}>Feels Like 5</Text>
+    <SafeAreaView
+      style={[
+        wrapper,
+        { backgroundColor: weatherType[weatherCondition]?.backgroundColor }
+      ]}
+    >
+      <View style={container}>
+        <Feather
+          name={weatherType[weatherCondition]?.icon}
+          size={100}
+          color="white"
+        />
+        <Text style={temperature}>{`${temp}°`}</Text>
+        <Text style={feels}>{`Feels like: ${feels_like}°`}</Text>
         <RowText
-          messageOne={'High: 8'}
-          messageTwo={'Low: 6'}
-          containerStyles={styles.highLowWrapper}
-          messageOneStyles={styles.highLow}
-          messageTwoStyles={styles.highLow}
+          messageOne={`High: ${temp_max}° `}
+          messageTwo={`Low: ${temp_min}°`}
+          containerStyles={hiLowWrapper}
+          messageOneStyles={hiLow}
+          messageTwoStyles={hiLow}
         />
       </View>
       <RowText
-        messageOne={"It's sunny"}
-        messageTwo={"It's perfect t-shirt weather"}
-        containerStyles={styles.bodyWrapper}
-        messageOneStyles={styles.description}
-        messageTwoStyles={styles.message}
+        messageOne={weather[0]?.description}
+        messageTwo={weatherType[weatherCondition]?.message}
+        containerStyles={bodyWrapper}
+        messageOneStyles={description}
+        messageTwoStyles={message}
       />
     </SafeAreaView>
   )
@@ -33,29 +59,27 @@ const CurrentWeather = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    backgroundColor: '#57C5B6'
+    flex: 1
   },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },
-  temp: {
-    color: '#002B5B',
-    // All Dimensions in the react-native is unitless and represent Density independent pixels
+  temperature: {
+    color: 'black',
     fontSize: 48
   },
   feels: {
     fontSize: 30,
-    color: '#002B5B'
+    color: 'black'
   },
-  highLowWrapper: {
-    flexDirection: 'row'
-  },
-  highLow: {
-    color: '#002B5B',
+  hiLow: {
+    color: 'black',
     fontSize: 20
+  },
+  hiLowWrapper: {
+    flexDirection: 'row'
   },
   bodyWrapper: {
     justifyContent: 'flex-end',
@@ -64,11 +88,10 @@ const styles = StyleSheet.create({
     marginBottom: 40
   },
   description: {
-    fontSize: 48
+    fontSize: 43
   },
   message: {
-    fontSize: 30
+    fontSize: 25
   }
 })
-
 export default CurrentWeather
