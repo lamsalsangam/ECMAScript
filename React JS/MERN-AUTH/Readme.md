@@ -10,4 +10,4 @@
 ## Back-End
 
 - # Create the backend folder
-  -- Start typing the backend logic in the server.js file
+  - Start typing the backend logic in the server.js file
