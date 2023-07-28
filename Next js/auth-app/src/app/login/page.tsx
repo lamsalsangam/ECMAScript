@@ -1,7 +1,47 @@
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+
 export default function LoginPage() {
+  // Things that the user can provide
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  // After the user gives all of the information
+  // onLogin method which will talk to the database(∴ async)
+  const onLogin = async () => {};
+
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>Login</h1>
+      <hr />
+      <label htmlFor="email">Email</label>
+      <input
+        className="p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+        id="email"
+        type="email"
+        value={user.email}
+        onChange={(e) => setUser({ ...user, email: e.target.value })}
+        placeholder="@email"
+      />
+      <label htmlFor="password">Password</label>
+      <input
+        className="p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+        id="password"
+        type="password"
+        value={user.password}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
+        placeholder="Password"
+      />
+      <button
+        onClick={onLogin}
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+      >
+        Login
+      </button>
+      <Link href={"/signup"}>Signup Page</Link>
     </div>
   );
 }
