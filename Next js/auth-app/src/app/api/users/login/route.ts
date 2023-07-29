@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    console.log("User Exists");
     //  Check if the password is correct
     const validPassword = await bcryptjs.compare(password, user.password);
     if (!validPassword) {

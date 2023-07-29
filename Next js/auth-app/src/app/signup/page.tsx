@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import axios from "axios";
 
 export default function SignUpPage() {
