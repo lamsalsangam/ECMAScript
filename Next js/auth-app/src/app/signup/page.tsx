@@ -1,14 +1,17 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+  const router = useRouter();
   // Things that the user can provide
   const [user, setUser] = useState({
     email: "",
     password: "",
     username: "",
   });
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   // After the user gives all of the information
   // onSignup method which will talk to the database(∴ async)
