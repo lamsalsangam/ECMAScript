@@ -1,7 +1,7 @@
 import { connect } from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
-var bcryptjs = require("bcryptjs");
+import bcryptjs from "bcryptjs";
 
 connect();
 
