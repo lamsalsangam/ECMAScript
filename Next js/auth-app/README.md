@@ -17,3 +17,9 @@ Nodemailer : Simple library to shoot out an email (Gmail, AWS,etc.)
 Mongoose : Library that helps to talk to the mongodb it is the wrapper around the mongodb drivers.
 
 ---
+
+src/app/api -> For creating the API point [Backend]
+
+src/dbConfig -> Making an connection with the database
+
+src/models -> To create the database schemas
