@@ -6,6 +6,7 @@ export function middleware(request: NextRequest) {
 
   const isPublicPath = path === "/login" || path === "/signup";
 
+  // Check if the token is present or not
   const token = request.cookies.get("token")?.value || "";
 
   if (isPublicPath && token) {
