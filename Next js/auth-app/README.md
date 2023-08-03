@@ -23,3 +23,5 @@ src/app/api -> For creating the API point [Backend]
 src/dbConfig -> Making an connection with the database
 
 src/models -> To create the database schemas
+
+src/helpers -> have the helper function for the API endpoint
