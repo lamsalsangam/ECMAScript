@@ -1,22 +1,22 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "./Box";
 import Loading from "@/app/loading";
 
 export default function Pretense() {
   const [quote, setQuote] = useState("");
-  const [loading, setLoading] = useState(true); // Set loading to true initially
+  const [loading, setLoading] = useState(true);
 
   const getData = async () => {
-    setLoading(true); // Set loading to true before fetching data
+    setLoading(true);
     try {
-      const response = await fetch("/api/pretense");
+      const response = await fetch("http://localhost:8000/api/pretense");
       const { data } = await response.json(); // Parse the response data
       setQuote(data); // Assuming the response contains a 'quote' field
     } catch (error: any) {
       console.log(error.message);
     }
-    setLoading(false); // Set loading to false after fetching data (whether successful or not)
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -30,10 +30,6 @@ export default function Pretense() {
       ) : (
         <Box quote={quote} /> // Show Box component when data is available
       )}
-      {/* <Suspense fallback={<Loading />}>
-        <Box quote={quote} />
-      </Suspense> */}
-
       <button
         onClick={getData}
         className="mt-12 bg-[#1989E6] text-white text-lg px-12 py-4 rounded-2xl hover:bg-[#1921BE] duration-150"
