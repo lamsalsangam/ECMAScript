@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv"; // Import 'dotenv' using ES6 module syntax
 import { Book } from "./model/bookModel.js";
@@ -37,6 +37,17 @@ app.post("/books", async (request, response) => {
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
+  }
+});
+
+// Route for GET All books form the database
+app.get("/books", async (request, response) => {
+  try {
+    const books = await Book.find({});
+    response.sendStatus(200).send(books);
+  } catch (error) {
+    console.log(error.message);
+    response.sendStatus(500).send({ message: error.message });
   }
 });
 
