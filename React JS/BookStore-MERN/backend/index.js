@@ -44,7 +44,7 @@ app.post("/books", async (request, response) => {
 app.get("/books", async (request, response) => {
   try {
     const books = await Book.find({});
-    response.sendStatus(200).send(books);
+    response.sendStatus(200).send({ count: books.length, data: books });
   } catch (error) {
     console.log(error.message);
     response.sendStatus(500).send({ message: error.message });
