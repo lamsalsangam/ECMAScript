@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express, { request, response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv"; // Import 'dotenv' using ES6 module syntax
 import { Book } from "./model/bookModel.js";
@@ -57,6 +57,31 @@ app.get("/books/:id", async (request, response) => {
     const { id } = request.params;
     const book = await Book.findById(id);
     response.sendStatus(200).send(book);
+  } catch (error) {
+    console.log(error.message);
+    response.sendStatus(500).send({ message: error.message });
+  }
+});
+
+// Route for UPDATE book
+app.put("/books/:id", async (request, response) => {
+  try {
+    if (
+      !request.body.title ||
+      !request.body.author ||
+      !request.body.publishYear
+    ) {
+      response.sendStatus(400).send({
+        message: "Send all required fields: title, author, publishYear",
+      });
+    }
+
+    const { id } = request.params;
+    const result = await Book.findByIdAndUpdate(id, request.body);
+    if (!result) {
+      response.sendStatus(404).send({ message: "Book not found." });
+    }
+    return response.status(200).send({ message: "Book updated successfully." });
   } catch (error) {
     console.log(error.message);
     response.sendStatus(500).send({ message: error.message });
