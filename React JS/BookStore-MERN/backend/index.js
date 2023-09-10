@@ -2,10 +2,13 @@ import express, { request, response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv"; // Import 'dotenv' using ES6 module syntax
 import booksRoute from "./routes/booksRoute.js";
+import cors from "cors";
 
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
+
+app.use(cors());
 
 const port = process.env.PORT;
 app.use(express.json());
