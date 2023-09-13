@@ -21,7 +21,7 @@ function ShowBook() {
         console.log(error);
         setLoading(false);
       });
-  });
+  }, []);
   return (
     <div className="p-4">
       <BackButton />
