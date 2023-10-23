@@ -6,10 +6,10 @@ const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
 export default function Navbar() {
   return (
-    <div className="sticky top-0 w-full bg-slate-200 z-30 shadow-sm">
-      <div className="py-4 border-b-[1px]"></div>
+    <div className="sticky top-0 z-30 w-full bg-slate-200 shadow-sm">
+      <div className="border-b-[1px] py-4"></div>
       <Container>
-        <div className="flex item-center justify-between gap-3 md-gap-0">
+        <div className="item-center md-gap-0 flex justify-between gap-3">
           <Link href={"/"} className={`${redressed.className} font-bold`}>
             E-Shop
           </Link>
