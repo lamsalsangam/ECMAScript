@@ -4,12 +4,15 @@ import Image from "next/image";
 import { truncateText } from "../../../utils/truncateText";
 import { formatPrice } from "../../../utils/formatPrice";
 import { Rating } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   data: any;
 }
 
 export default function ProductCard({ data }: ProductCardProps) {
+  const router = useRouter();
+
   const productRating =
     // here the acc "accumulator" is initialized to be 0 at the beginning.
     // data.reviews.reduce((acc, item) => item.rating + acc, 0) / data.reviews.length;
@@ -17,7 +20,10 @@ export default function ProductCard({ data }: ProductCardProps) {
     data.reviews.length;
 
   return (
-    <div className="col-span-1 cursor-pointer rounded-sm border-[1.2px] border-slate-200 bg-slate-50 p-2 text-center text-sm transition hover:scale-105">
+    <div
+      onClick={() => router.push(`/product/${data.id}`)}
+      className="col-span-1 cursor-pointer rounded-sm border-[1.2px] border-slate-200 bg-slate-50 p-2 text-center text-sm transition hover:scale-105"
+    >
       <div className="flex w-full flex-col items-center gap-1">
         <div className="relative aspect-square w-full overflow-hidden">
           <Image
