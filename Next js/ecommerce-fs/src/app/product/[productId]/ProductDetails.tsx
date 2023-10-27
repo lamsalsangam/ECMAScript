@@ -1,16 +1,45 @@
 "use client";
 
 import { Rating } from "@mui/material";
+import { type } from "os";
+import { useState } from "react";
 
 interface ProductDetailsProps {
   product: any;
 }
+
+export type CartProductType = {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  brand: string;
+  selectedImg: SelectedImgType;
+  quantity: number;
+  price: number;
+};
+
+export type SelectedImgType = {
+  color: string;
+  colorCode: string;
+  image: string;
+};
 
 const Horizontal = () => {
   return <hr className="my-2 w-[30%]" />;
 };
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+  const [cartProduct, setCartProduct] = useState<CartProductType>({
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    brand: product.brand,
+    selectedImg: { ...product.images[0] },
+    quantity: 1,
+    price: product.price,
+  });
   const productRating =
     // here the acc "accumulator" is initialized to be 0 at the beginning.
     // data.reviews.reduce((acc, item) => item.rating + acc, 0) / data.reviews.length;
