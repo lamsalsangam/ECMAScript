@@ -1,6 +1,7 @@
 "use client";
 
 import SetColor from "@/components/products/SetColor";
+import SetQuantity from "@/components/products/SetQuantity";
 import { Rating } from "@mui/material";
 import { type } from "os";
 import { useState, useCallback } from "react";
@@ -57,6 +58,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     [cartProduct.selectedImg],
   );
 
+  const handleQtyIncrease = useCallback(() => {}, []);
+  const handleQtyDecrease = useCallback(() => {}, []);
+
   return (
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
       <div>Images</div>
@@ -87,7 +91,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           handleColorSelect={handleColorSelect}
         />
         <Horizontal />
-        <div>quantity</div>
+        <SetQuantity
+          cartProduct={cartProduct}
+          handleQtyIncrease={handleQtyIncrease}
+          handleQtyDecrease={handleQtyDecrease}
+        />
         <Horizontal />
         <div>add to cart</div>
       </div>
