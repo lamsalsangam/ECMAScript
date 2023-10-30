@@ -58,8 +58,22 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     [cartProduct.selectedImg],
   );
 
-  const handleQtyIncrease = useCallback(() => {}, []);
-  const handleQtyDecrease = useCallback(() => {}, []);
+  const handleQtyIncrease = useCallback(() => {
+    if (cartProduct.quantity === 99) {
+      return;
+    }
+    setCartProduct((prev) => {
+      return { ...prev, quantity: ++prev.quantity };
+    });
+  }, [cartProduct]);
+  const handleQtyDecrease = useCallback(() => {
+    if (cartProduct.quantity === 1) {
+      return;
+    }
+    setCartProduct((prev) => {
+      return { ...prev, quantity: --prev.quantity };
+    });
+  }, [cartProduct]);
 
   return (
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
