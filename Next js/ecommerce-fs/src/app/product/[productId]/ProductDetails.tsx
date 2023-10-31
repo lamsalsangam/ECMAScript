@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "@/components/Button";
+import ProductImage from "@/components/products/ProductImage";
 import SetColor from "@/components/products/SetColor";
 import SetQuantity from "@/components/products/SetQuantity";
 import { Rating } from "@mui/material";
@@ -77,7 +79,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   return (
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-      <div>Images</div>
+      <ProductImage
+        cartProduct={cartProduct}
+        product={product}
+        handleColorSelect={handleColorSelect}
+      />
       <div>
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
         <div className="flex items-center gap-1 text-sm text-slate-500">
@@ -111,7 +117,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           handleQtyDecrease={handleQtyDecrease}
         />
         <Horizontal />
-        <div>add to cart</div>
+        <div className="max-w-[300px]">
+          <Button label="Add To Cart" onClick={() => {}} />
+        </div>
       </div>
     </div>
   );
