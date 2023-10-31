@@ -41,7 +41,14 @@ export default function ProductImage({
           );
         })}
       </div>
-      <div></div>
+      <div className="relative col-span-5 aspect-square">
+        <Image
+          alt={cartProduct.name}
+          src={cartProduct.selectedImg.image}
+          fill
+          className="h-full max-h-[500px] min-h-[300px] w-full object-contain sm:min-h-[400px]"
+        />
+      </div>
     </div>
   );
 }
