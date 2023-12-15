@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
-import DayListItem from "./src/components/core/DayListItem";
+import DayListItem from "../components/core/DayListItem";
 
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import {
@@ -15,7 +15,7 @@ const days = [...Array(24)].map((_, index) => index + 1);
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
-export default function App() {
+export default function HomeScreen() {
   let [fontsLoaded, fontError] = useFonts({
     Inter: Inter_900Black,
     Amatic: AmaticSC_400Regular,
