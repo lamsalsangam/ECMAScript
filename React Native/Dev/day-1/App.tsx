@@ -1,9 +1,34 @@
 import { StatusBar } from "expo-status-bar";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
+import DayListItem from "./src/components/core/DayListItem";
+
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 
 const days = [...Array(24)].map((_, index) => index + 1);
 
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
+  let [fontsLoaded, fontError] = useFonts({
+    Inter: Inter_900Black,
+  });
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  // if (!fontsLoaded && !fontError) {
+  //   return <ActivityIndicator />;
+  // }
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -11,11 +36,7 @@ export default function App() {
         contentContainerStyle={styles.content}
         columnWrapperStyle={styles.column}
         numColumns={2}
-        renderItem={({ item }) => (
-          <View style={styles.box}>
-            <Text style={styles.text}>{item}</Text>
-          </View>
-        )}
+        renderItem={({ item }) => <DayListItem day={item} />}
       />
       {/* {days.map((day) => (
         <View style={styles.box} key={day}>
@@ -48,21 +69,5 @@ const styles = StyleSheet.create({
 
   column: {
     gap: 10,
-  },
-
-  box: {
-    backgroundColor: "#F9EDE3",
-    flex: 1,
-    aspectRatio: 1,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#9B4521",
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  text: {
-    color: "#9B4521",
-    fontSize: 50,
   },
 });
