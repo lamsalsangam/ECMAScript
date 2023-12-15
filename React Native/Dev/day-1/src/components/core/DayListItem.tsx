@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
   text: {
     color: "#9B4521",
-    fontSize: 50,
-    fontFamily: "Inter",
+    fontSize: 75,
+    fontFamily: "AmaticBold",
   },
 });
