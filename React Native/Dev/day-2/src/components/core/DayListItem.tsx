@@ -7,7 +7,7 @@ type DayListItem = {
 
 export default function DayListItem({ day }: DayListItem) {
   return (
-    <Link href={`/(days)/day${day}`} asChild>
+    <Link href={`/(days)/day${day.toString()}`} asChild>
       <Pressable style={styles.box}>
         <Text style={styles.text}>{day}</Text>
       </Pressable>
