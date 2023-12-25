@@ -1,32 +1,37 @@
-import { Stack, router } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Fontisto } from "@expo/vector-icons";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { Link, Stack, router } from "expo-router";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, SafeAreaView, Pressable } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import {
-  Directions,
-  Gesture,
   GestureDetector,
+  Gesture,
+  Directions,
 } from "react-native-gesture-handler";
+
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideOutLeft,
+  SlideInRight,
+} from "react-native-reanimated";
 
 const onboardingSteps = [
   {
+    icon: "snowflake",
+    title: "Welcome #DEVember",
+    description: "Daily React Native tutorials during December",
+  },
+  {
+    icon: "people-arrows",
+    title: "Learn and grow together",
+    description: "Learn by building 24 projects with React Native and Expo",
+  },
+  {
     icon: "book-reader",
-    title: "Learn ReactNative",
-    description: "Learning the react native for gaining the knowledge.",
-  },
-  {
-    icon: "arrow-up",
-    title: "Grow more",
+    title: "Education for Children",
     description:
-      "Learning never ends; the more you know, the more there is to know.",
-  },
-  {
-    icon: "crown",
-    title: "Endless Possibilities",
-    description:
-      "Jack of all trades, master of none, but still is better than a master of one.",
+      'Contribute to the fundraiser "Education for Children" to help Save the Children in their effort of providing education to every child',
   },
 ];
 
@@ -67,31 +72,51 @@ export default function OnboardingScreen() {
     <SafeAreaView style={styles.page}>
       <Stack.Screen options={{ headerShown: false }} />
       <StatusBar style="light" />
+
       <View style={styles.stepIndicatorContainer}>
-        {onboardingSteps.map((_, i) => (
+        {onboardingSteps.map((step, index) => (
           <View
-            key={i}
+            key={index}
             style={[
               styles.stepIndicator,
-              { backgroundColor: i === screenIndex ? "#CEF202" : "gray" },
+              { backgroundColor: index === screenIndex ? "#CEF202" : "grey" },
             ]}
           />
         ))}
       </View>
+
       <GestureDetector gesture={swipes}>
-        <View style={styles.pageContent}>
-          <Fontisto
-            style={styles.image}
-            name="money-symbol"
-            size={100}
-            color="#cef202"
-          />
+        <View style={styles.pageContent} key={screenIndex}>
+          <Animated.View entering={FadeIn} exiting={FadeOut}>
+            <FontAwesome5
+              style={styles.image}
+              name={data.icon}
+              size={150}
+              color="#CEF202"
+            />
+          </Animated.View>
 
           <View style={styles.footer}>
-            <Text style={styles.title}>{data.title}</Text>
-            <Text style={styles.description}>{data.description}</Text>
+            <Animated.Text
+              entering={SlideInRight}
+              exiting={SlideOutLeft}
+              style={styles.title}
+            >
+              {data.title}
+            </Animated.Text>
+            <Animated.Text
+              entering={SlideInRight.delay(50)}
+              exiting={SlideOutLeft}
+              style={styles.description}
+            >
+              {data.description}
+            </Animated.Text>
+
             <View style={styles.buttonsRow}>
-              <Text style={styles.buttonText}>Skip</Text>
+              <Text onPress={endOnboarding} style={styles.buttonText}>
+                Skip
+              </Text>
+
               <Pressable onPress={onContinue} style={styles.button}>
                 <Text style={styles.buttonText}>Continue</Text>
               </Pressable>
@@ -105,6 +130,7 @@ export default function OnboardingScreen() {
 
 const styles = StyleSheet.create({
   page: {
+    // alignItems: 'center',
     justifyContent: "center",
     flex: 1,
     backgroundColor: "#15141A",
@@ -113,55 +139,59 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
   },
-  stepIndicatorContainer: {
-    marginHorizontal: 20,
-    flexDirection: "row",
-    gap: 8,
-  },
-  stepIndicator: {
-    flex: 1,
-    height: 3,
-    backgroundColor: "gray",
-    borderRadius: 10,
-  },
   image: {
     alignSelf: "center",
     margin: 20,
-    marginTop: 50,
+    marginTop: 70,
   },
   title: {
     color: "#FDFDFD",
     fontSize: 50,
-    fontFamily: "InterBlackBold",
+    fontFamily: "InterBlack",
     letterSpacing: 1.3,
     marginVertical: 10,
   },
   description: {
     color: "gray",
     fontSize: 20,
-    lineHeight: 28,
     fontFamily: "Inter",
+    lineHeight: 28,
   },
   footer: {
     marginTop: "auto",
   },
+
   buttonsRow: {
     marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
-    gap: 40,
+    gap: 20,
   },
   button: {
-    backgroundColor: "#302E28",
+    backgroundColor: "#302E38",
     borderRadius: 50,
     alignItems: "center",
     flex: 1,
   },
   buttonText: {
     color: "#FDFDFD",
-    fontFamily: "InterBold",
+    fontFamily: "InterSemi",
     fontSize: 16,
+
     padding: 15,
     paddingHorizontal: 25,
+  },
+
+  // steps
+  stepIndicatorContainer: {
+    flexDirection: "row",
+    gap: 8,
+    marginHorizontal: 15,
+  },
+  stepIndicator: {
+    flex: 1,
+    height: 3,
+    backgroundColor: "gray",
+    borderRadius: 10,
   },
 });
