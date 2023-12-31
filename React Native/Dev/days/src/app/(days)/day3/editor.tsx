@@ -1,3 +1,4 @@
+import MarkDownDisplay from "@/components/day3/MarkdownDisplay";
 import { View, Text, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Markdown from "react-native-markdown-display";
@@ -38,52 +39,16 @@ You can create links easily:
 
 You can display code snippets:
 
-'''python
+\`\`\`python
 def greet(name):
     print(f"Hello, {name}!")
 
 greet("World")
-'''
+\`\`\`
 `;
 
 const EditorScreen = () => {
-  return (
-    <ScrollView style={styles.page} contentInsetAdjustmentBehavior="automatic">
-      <Markdown style={markdownStyles}>{copy}</Markdown>
-    </ScrollView>
-  );
+  return <MarkDownDisplay>{copy}</MarkDownDisplay>;
 };
-
-const styles = StyleSheet.create({
-  page: {
-    backgroundColor: "white",
-    flex: 1,
-    padding: 10,
-  },
-});
-
-// Styles for the madrkdown
-const markdownStyles = StyleSheet.create({
-  heading1: {
-    fontFamily: "InterBlackBold",
-    color: "#212020",
-    marginTop: 15,
-    marginBottom: 10,
-    lineHeight: 40,
-  },
-
-  heading2: {
-    fontFamily: "InterBold",
-    color: "#404040",
-    marginTop: 10,
-    marginBottom: 5,
-    lineHeight: 30,
-  },
-  body: {
-    fontSize: 16,
-    // fontFamily: "Inter",
-    lineHeight: 20,
-  },
-});
 
 export default EditorScreen;
