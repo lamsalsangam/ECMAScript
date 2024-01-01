@@ -1,54 +1,125 @@
-import MarkDownDisplay from "@/components/day3/MarkdownDisplay";
-import { View, Text, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import Markdown from "react-native-markdown-display";
+import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
+import React, { useState } from "react";
+import MarkdownDisplay from "@components/day3/MarkdownDisplay";
 
-const copy = `# Dummy Markdown Content
+const template = `# 🎉 Fun with Markdown!
 
-## Introduction
+## 🚀 Introduction
+Welcome to this **fun and exciting** markdown guide! Let's dive into the world of Markdown and discover how it makes text formatting cool and easy!
 
-Welcome to this dummy markdown document! This document is created for the sole purpose of providing some example content in markdown format.
+## 🎈 Basics: Add Some Flair
 
-## Lists
+- **Bold and Beautiful:** Make your text stand out! Use \`**\` or \`__\`. Example: **Look at me!**
+- *Sassy Italics:* Add a slant with \`*\` or \`_\`. Example: *I'm leaning!*
 
-### Unordered List
-- Item 1
-- Item 2
-- Item 3
+### 🍔 Let's List Some Fun Things!
 
-### Ordered List
-1. First item
-2. Second item
-3. Third item
+1. 🌟 Star gazing
+2. 🏖 Beach parties
+3. 🍕 Pizza nights
 
-## Text Formatting
+- 🎮 Video games
+- 📚 Reading a good book
+- 🧘 Yoga time
 
-You can use various text formatting options in markdown:
+## 🌈 Advanced Fun
 
-- **Bold Text**
-- *Italic Text*
-- ~~Strikethrough Text~~
+### 🖼 Adding Images and Links
 
-## Links
+A cute pic: 
 
-You can create links easily:
+![Cute Cat](https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)
 
-[Visit OpenAI](https://www.openai.com)
+Visit a fun site: [Fun Site](https://example.com)
 
-## Code
+### 🎶 Code Block Party
 
-You can display code snippets:
-
-\`\`\`python
-def greet(name):
-    print(f"Hello, {name}!")
-
-greet("World")
+\`\`\`javascript
+// JavaScript party trick
+function partyTime() {
+    console.log("Let's dance 💃🕺!");
+}
 \`\`\`
+
+## 🎤 Conclusion
+Markdown is not just for formatting; it's for having fun while expressing yourself! Keep exploring and enjoy the markdown party! 🎊
+
+> Enjoy crafting your own fun markdown documents! 🎨🎉
 `;
 
 const EditorScreen = () => {
-  return <MarkDownDisplay>{copy}</MarkDownDisplay>;
+  const [content, setContent] = useState(template);
+  const [tab, setTab] = useState("edit");
+
+  return (
+    <View style={styles.page}>
+      <View style={styles.tabsContainer}>
+        <Pressable
+          onPress={() => setTab("edit")}
+          style={[
+            styles.tab,
+            { borderColor: tab === "edit" ? "mediumorchid" : "gray" },
+          ]}
+        >
+          <Text style={styles.tabText}>Edit</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => setTab("preview")}
+          style={[
+            styles.tab,
+            { borderColor: tab === "preview" ? "mediumorchid" : "gray" },
+          ]}
+        >
+          <Text style={styles.tabText}>Preview</Text>
+        </Pressable>
+      </View>
+
+      {tab === "edit" ? (
+        <TextInput
+          value={content}
+          onChangeText={setContent}
+          multiline
+          numberOfLines={50}
+          style={styles.input}
+        />
+      ) : (
+        <MarkdownDisplay>{content}</MarkdownDisplay>
+      )}
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  page: {
+    backgroundColor: "whitesmoke",
+    flex: 1,
+    padding: 10,
+  },
+  input: {
+    backgroundColor: "white",
+    flex: 1,
+    padding: 20,
+    paddingTop: 20,
+    borderRadius: 10,
+    fontSize: 16,
+  },
+
+  tabsContainer: {
+    flexDirection: "row",
+    gap: 10,
+    marginVertical: 10,
+  },
+  tab: {
+    flex: 1,
+    padding: 10,
+    borderColor: "gray",
+    borderWidth: 2,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  tabText: {
+    fontFamily: "InterBold",
+  },
+});
 
 export default EditorScreen;
