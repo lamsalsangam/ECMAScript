@@ -4,18 +4,18 @@ import { Link, Stack, useLocalSearchParams } from "expo-router";
 import MarkDownDisplay from "@/components/day3/MarkdownDisplay";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const description = `# Markdown
+const description = `# Animation
 
-Integrate Markdown content in **React Native**`;
+Integrate Animation in **React Native**`;
 
 const DayDetailsScreen = () => {
   const { day }: { day: string } = useLocalSearchParams();
   return (
     <SafeAreaView edges={["bottom"]} style={{ flex: 1 }}>
-      <Stack.Screen options={{ title: "Day 3: MarkDown" }} />
+      <Stack.Screen options={{ title: "Day 4: Animation" }} />
       <MarkDownDisplay>{description}</MarkDownDisplay>
-      <Link href={"/day3/editor"} asChild>
-        <Button title="Go to Editor" />
+      <Link href={"/day4/animation"} asChild>
+        <Button title="Go to Animation" />
       </Link>
     </SafeAreaView>
   );
