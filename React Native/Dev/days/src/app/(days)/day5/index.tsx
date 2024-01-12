@@ -5,7 +5,7 @@ import MarkdownDisplay from "@/components/day3/MarkdownDisplay";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const description = `
-# Animated splash screen
+# Maps integrated
 `;
 
 const DayDetailsScreen = () => {
