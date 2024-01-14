@@ -1,6 +1,7 @@
 import { Stack } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import apartments from "@assets/data/day5/apartments.json";
 
 export default function airbnb() {
   return (
@@ -8,20 +9,26 @@ export default function airbnb() {
       <Stack.Screen options={{ headerShown: false }} />
       <MapView
         style={styles.map}
+        provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 33.835187690581655,
-          longitude: 132.77316811043863,
+          latitude: 37.7749,
+          longitude: -122.4194,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
       >
-        <Marker
-          coordinate={{
-            latitude: 33.835187690581655,
-            longitude: 132.77316811043863,
-          }}
-          title="Cyber Space | My Workplace"
-        />
+        {apartments.map((apartment) => (
+          <Marker
+            coordinate={{
+              latitude: apartment.latitude,
+              longitude: apartment.longitude,
+            }}
+            key={apartment.id}
+            title={apartment.title}
+          >
+            <Text>$ {apartment.price}</Text>
+          </Marker>
+        ))}
       </MapView>
     </View>
   );
